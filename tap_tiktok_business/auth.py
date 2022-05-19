@@ -130,7 +130,7 @@ class OAuthAuthenticator(APIAuthenticatorBase, metaclass=SingletonMeta):
         token_response = requests.post(
             url=self.auth_endpoint,
             json=auth_request_payload,
-            headers={'Content-Type': 'application/json'},
+            headers={"Content-Type": "application/json"},
         )
         try:
             token_response.raise_for_status()

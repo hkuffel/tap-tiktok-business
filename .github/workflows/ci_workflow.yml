@@ -54,5 +54,11 @@ jobs:
       run: |
         poetry install
     - name: Test with pytest
+      env:
+        TAP_TIKTOK_CLIENT_ID: ${{ secrets.TAP_TIKTOK_CLIENT_ID }}
+        TAP_TIKTOK_CLIENT_SECRET: ${{ secrets.TAP_TIKTOK_CLIENT_SECRET }}
+        TAP_TIKTOK_ACCESS_TOKEN: ${{ secrets.TAP_TIKTOK_ACCESS_TOKEN }}
+        TAP_TIKTOK_REFRESH_TOKEN: ${{ secrets.TAP_TIKTOK_REFRESH_TOKEN }}
+        TAP_TIKTOK_BUSINESS_ID: ${{ secrets.TAP_TIKTOK_BUSINESS_ID }}
       run: |
         poetry run pytest --capture=no

@@ -28,14 +28,14 @@ class TapTiktokBusinessStream(RESTStream):
         """Return a new authenticator object."""
         return OAuthAuthenticator(
             self,
-            auth_endpoint="https://business-api.tiktok.com/open_api/oauth2/token/?business=tt_user"
+            auth_endpoint="https://business-api.tiktok.com/open_api/oauth2/token/?business=tt_user",
         )
 
     @property
     def http_headers(self) -> dict:
         """Return the http headers needed."""
         headers = {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         }
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
@@ -47,18 +47,16 @@ class TapTiktokBusinessStream(RESTStream):
         """Return a token for identifying next page or None if no more pages."""
         try:
             resp_json = response.json()
-            if self.name != 'accounts':
-                if resp_json['data']['has_more']:
-                    return resp_json['data']['cursor']
+            if self.name != "accounts":
+                if resp_json["data"]["has_more"]:
+                    return resp_json["data"]["cursor"]
                 else:
                     return None
         except KeyError:
             return None
 
     def get_url_params(
-        self,
-        context: Optional[dict],
-        next_page_token: Optional[Any] = None
+        self, context: Optional[dict], next_page_token: Optional[Any] = None
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization.
         params like business id and fields are actually added in the
@@ -118,7 +116,7 @@ class TapTiktokBusinessStream(RESTStream):
         By default, no payload will be sent (return None).
         """
         payload: Dict = {}
-        payload['business_id'] = context['business_id']
+        payload["business_id"] = context["business_id"]
         if self.fields:
             payload["fields"] = self.fields
         if next_page_token:
@@ -126,9 +124,7 @@ class TapTiktokBusinessStream(RESTStream):
         return payload
 
     def parse_response(
-        self,
-        response: requests.Response,
-        context: Optional[dict]
+        self, response: requests.Response, context: Optional[dict]
     ) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
         # TODO: Parse response body and return a set of records.
