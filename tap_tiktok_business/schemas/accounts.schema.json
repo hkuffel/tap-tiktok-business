@@ -1,0 +1,112 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "key_properties": ["business_id"],
+    "properties": {
+        "business_id": {
+            "type": ["null", "string"]
+        },
+        "request_id": {
+            "type": ["null", "string"]
+        },
+        "code": {
+            "type": ["null", "integer"]
+        },
+        "message": {
+            "type": ["null", "string"]
+        },
+        "data": {
+            "type": ["null", "object"],
+            "additionalProperties": false,
+            "properties": {
+                "profile_image": {
+                    "type": ["null", "string"]
+                },
+                "username": {
+                    "type": ["null", "string"]
+                },
+                "display_name": {
+                    "type": ["null", "string"]
+                },
+                "followers_count": {
+                    "type": ["null", "integer"]
+                },
+                "audience_countries": {
+                    "type": ["null", "array"],
+                    "items": {
+                        "type": ["null", "object"],
+                        "additionalProperties": false,
+                        "properties": {
+                            "country": {
+                                "type": ["null", "string"]
+                            },
+                            "percentage": {
+                                "type": ["null", "number"]
+                            }
+                        }
+                    }
+                },
+                "audience_genders": {
+                    "type": ["null", "array"],
+                    "items": {
+                        "type": ["null", "object"],
+                        "additionalProperties": false,
+                        "properties": {
+                            "gender": {
+                                "type": ["null", "string"]
+                            },
+                            "percentage": {
+                                "type": ["null", "number"]
+                            }
+                        }
+                    }
+                },
+                "metrics": {
+                    "type": ["null", "array"],
+                    "items": {
+                        "type": ["null", "object"],
+                        "additionalProperties": false,
+                        "properties": {
+                            "date": {
+                                "type": ["null", "string"]
+                            },
+                            "followers_count": {
+                                "type": ["null", "integer"]
+                            },
+                            "profile_views": {
+                                "type": ["null", "integer"]
+                            },
+                            "video_views": {
+                                "type": ["null", "integer"]
+                            },
+                            "likes": {
+                                "type": ["null", "integer"]
+                            },
+                            "comments": {
+                                "type": ["null", "integer"]
+                            },
+                            "shares": {
+                                "type": ["null", "integer"]
+                            },
+                            "audience_activity": {
+                                "type": ["null", "array"],
+                                "items": {
+                                    "type": ["null", "object"],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "hour": {
+                                            "type": ["null", "string"]
+                                        },
+                                        "count": {
+                                            "type": ["null", "integer"]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

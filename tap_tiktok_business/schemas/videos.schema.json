@@ -1,0 +1,86 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "business_id": {
+            "type": ["null", "string"]
+        },
+        "item_id": {
+            "type": ["null", "string"]
+        },
+        "create_time": {
+            "type": ["null", "string"],
+            "format": "date-time"
+        },
+        "thumbnail_url": {
+            "type": ["null", "string"]
+        },
+        "share_url": {
+            "type": ["null", "string"]
+        },
+        "embed_url": {
+            "type": ["null", "string"]
+        },
+        "caption": {
+            "type": ["null", "string"]
+        },
+        "video_views": {
+            "type": ["null", "integer"]
+        },
+        "video_duration": {
+            "type": ["null", "number"]
+        },
+        "likes": {
+            "type": ["null", "integer"]
+        },
+        "comments": {
+            "type": ["null", "integer"]
+        },
+        "shares": {
+            "type": ["null", "integer"]
+        },
+        "reach": {
+            "type": ["null", "integer"]
+        },
+        "full_video_watched_rate": {
+            "type": ["null", "number"]
+        },
+        "total_time_watched": {
+            "type": ["null", "number"]
+        },
+        "average_time_watched": {
+            "type": ["null", "number"]
+        },
+        "impression_sources": {
+            "type": ["null", "array"],
+            "items": {
+                "type": ["null", "object"],
+                "additionalProperties": false,
+                "properties": {
+                    "impression_source": {
+                        "type": ["null", "string"]
+                    },
+                    "percentage": {
+                        "type": ["null", "number"]
+                    }
+                }
+            }
+        },
+        "audience_countries": {
+            "type": ["null", "array"],
+            "items": {
+                "type": ["null", "object"],
+                "additionalProperties": false,
+                "properties": {
+                    "country": {
+                        "type": ["null", "string"]
+                    },
+                    "percentage": {
+                        "type": ["null", "number"]
+                    }
+                }
+            }
+        }
+        
+    }
+}

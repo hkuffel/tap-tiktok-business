@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "business_id": {
+            "type": ["null", "string"]
+        },
+        "comment_id": {
+            "type": ["null", "string"]
+        },
+        "video_id": {
+            "type": ["null", "string"]
+        },
+        "create_time": {
+            "type": ["null", "string"],
+            "format": "date-time"
+        },
+        "text": {
+            "type": ["null", "string"]
+        },
+        "likes": {
+            "type": ["null", "integer"]
+        },
+        "replies": {
+            "type": ["null", "integer"]
+        },
+        "owner": {
+            "type": ["null", "boolean"]
+        },
+        "liked": {
+            "type": ["null", "boolean"]
+        },
+        "pinned": {
+            "type": ["null", "boolean"]
+        },
+        "status": {
+            "type": ["null", "string"]
+        }
+        
+    }
+}

@@ -1,0 +1,40 @@
+version: 1
+send_anonymous_usage_stats: true
+project_id: 84ef0d85-4664-4c83-8c0a-427892996390
+plugins:
+  extractors:
+  - name: tap-tiktok-business
+    namespace: tap_tiktok_business
+    pip_url: -e .
+    capabilities:
+    - state
+    - catalog
+    - discover
+    settings:
+    - name: client_id
+      type: string
+    - name: client_secret
+      type: string
+    - name: access_token
+      description: Your TikTok access token
+      type: string
+    - name: refresh_token
+      description: Your TikTok refresh token
+      type: string
+    - name: business_ids
+      kind: array
+      description: Your TikTok business ID
+    - name: start_date
+      value: '2010-01-01T00:00:00Z'
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
+  - name: target-bigquery
+    variant: adswerve
+    pip_url: git+https://github.com/adswerve/target-bigquery.git@0.12.1
+    config:
+      project_id: nymag-analytics-157315
+      add_metadata_columns: true
+      table_prefix: src_
+      merge_state_messages: false

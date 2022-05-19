@@ -1,0 +1,8 @@
+{
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "access_token: "YOUR_ACCESS_TOKEN",
+  "refresh_token": "YOUR_REFRESH_TOKEN",
+  "start_date": "2020-01-01T00:00:00Z",
+  "user_agent": "tap-snapchat-ads <api_user_email@example.com>"
+}
