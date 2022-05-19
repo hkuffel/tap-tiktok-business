@@ -27,6 +27,9 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+    - name: Run format command from tox.ini
+      run: |
+        poetry run tox -e format
     - name: Run lint command from tox.ini
       run: |
         poetry run tox -e lint
