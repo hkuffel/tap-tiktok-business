@@ -1,5 +1,11 @@
 # tap-tiktok-business
 
+[![test](https://github.com/hkuffel/tap-tiktok-business/actions/workflows/ci_workflow.yml/badge.svg)](https://github.com/hkuffel/tap-tiktok-business/actions/workflows/ci_workflow.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PyPI Version](https://img.shields.io/pypi/v/tap-tiktok-business?style=flat)](https://pypi.org/project/tap-tiktok-business/)
+[![License](https://img.shields.io/pypi/l/tap-tiktok-business)](LICENSE.md)
+[![Python](https://img.shields.io/pypi/pyversions/tap-tiktok-business)](https://pypi.org/project/tap-tiktok-business/)
+
 `tap-tiktok-business` is a Singer tap for the TikTok Business API.
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
