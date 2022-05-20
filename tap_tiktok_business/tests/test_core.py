@@ -17,7 +17,7 @@ if os.getenv("CI"):  # true when running a GitHub Actions workflow
         "access_token": os.getenv("TAP_TIKTOK_ACCESS_TOKEN"),
         "refresh_token": os.getenv("TAP_TIKTOK_REFRESH_TOKEN"),
         "business_ids": os.getenv("TAP_TIKTOK_BUSINESS_ID").split(", "),
-        "start_date": datetime.datetime.now() - datetime.timedelta(days=1),
+        "start_date": "2022-04-01T00:00:00Z",
     }
 else:
     SAMPLE_CONFIG = read_json_file(CONFIG_PATH)
