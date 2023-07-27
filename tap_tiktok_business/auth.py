@@ -5,8 +5,6 @@ import requests
 from pathlib import Path
 from typing import Any, cast, Dict, Optional, Union, List, Iterable
 
-from singer import utils
-
 from singer_sdk.helpers._util import utc_now
 from singer_sdk.streams import Stream as RESTStreamBase
 from singer_sdk.authenticators import APIAuthenticatorBase, SingletonMeta
@@ -114,7 +112,7 @@ class OAuthAuthenticator(APIAuthenticatorBase, metaclass=SingletonMeta):
         """
         if self.last_refreshed is None or self.expires_in is None:
             return False
-        if self.expires_in > (utils.now() - self.last_refreshed).total_seconds():
+        if self.expires_in > (utc_now() - self.last_refreshed).total_seconds():
             return True
         return False
 
