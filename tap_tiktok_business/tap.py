@@ -57,9 +57,14 @@ class TapTiktokBusiness(Tap):
             description="The earliest record date to sync",
         ),
         th.Property(
-            "add_record_metadata",
-            th.BooleanType,
-            description="Enable _sdc fields",
+            "stream_maps",
+            th.ObjectType,
+            description="stream maps",
+        ),
+        th.Property(
+            "stream_map_config",
+            th.ObjectType,
+            description="stream maps config",
         ),
     ).to_dict()
 
