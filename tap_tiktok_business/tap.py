@@ -58,12 +58,12 @@ class TapTiktokBusiness(Tap):
         ),
         th.Property(
             "stream_maps",
-            th.ObjectType,
+            th.ObjectType(),
             description="stream maps",
         ),
         th.Property(
             "stream_map_config",
-            th.ObjectType,
+            th.ObjectType(),
             description="stream maps config",
         ),
     ).to_dict()
