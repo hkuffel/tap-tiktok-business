@@ -56,6 +56,11 @@ class TapTiktokBusiness(Tap):
             th.DateTimeType,
             description="The earliest record date to sync",
         ),
+        th.Property(
+            "add_record_metadata",
+            th.BooleanType,
+            description="Enable _sdc fields",
+        ),
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:
