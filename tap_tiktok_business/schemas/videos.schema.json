@@ -9,8 +9,7 @@
             "type": ["null", "string"]
         },
         "create_time": {
-            "type": ["null", "string"],
-            "format": "date-time"
+            "type": ["null", "string"]
         },
         "thumbnail_url": {
             "type": ["null", "string"]

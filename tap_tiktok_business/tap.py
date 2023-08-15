@@ -12,6 +12,8 @@ from tap_tiktok_business.streams import (
     CommentsStream,
 )
 
+from pathlib import Path
+config = Path(__file__).parent.parent / '.secrets' / 'config.json'
 STREAM_TYPES = [AccountsStream, VideosStream, CommentsStream]
 
 
@@ -56,8 +58,21 @@ class TapTiktokBusiness(Tap):
             th.DateTimeType,
             description="The earliest record date to sync",
         ),
+        th.Property(
+            "stream_maps",
+            th.ObjectType(),
+            description="stream maps",
+        ),
+        th.Property(
+            "stream_map_config",
+            th.ObjectType(),
+            description="stream maps config",
+        ),
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""
         return [stream_class(tap=self) for stream_class in STREAM_TYPES]
+
+if __name__ == "__main__":
+    TapTiktokBusiness(config=config).cli()
