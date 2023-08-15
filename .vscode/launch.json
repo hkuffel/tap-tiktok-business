@@ -1,0 +1,16 @@
+{
+    // launch.json
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": "tap-tiktok-business discovery",
+        "type": "python",
+        "request": "launch",
+        "module": "tap_tiktok_business.tap",
+        "args": ["--config", ".secrets/config.json",">", "output.json"],
+        "python": "${command:python.interpreterPath}",
+        // Set to true to debug third-party library code
+        "justMyCode": true,
+    }
+    ]
+}

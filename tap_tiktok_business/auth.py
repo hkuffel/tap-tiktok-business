@@ -137,7 +137,7 @@ class OAuthAuthenticator(APIAuthenticatorBase, metaclass=SingletonMeta):
             raise RuntimeError(
                 f"Failed OAuth login, response was '{token_response.json()}'. {ex}"
             )
-        token_json = token_response.json()
+        token_json = token_response.json()['data']
         self.access_token = token_json["access_token"]
         self.expires_in = token_json.get("expires", self._default_expiration)
         self.refresh_expires_in = token_json.get("refresh_expires")

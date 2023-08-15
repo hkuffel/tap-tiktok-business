@@ -21,7 +21,7 @@ class AccountsStream(TapTiktokBusinessStream):
     primary_keys = ["business_id"]
     replication_key = None
     schema_filepath = SCHEMAS_DIR / "accounts.schema.json"
-    rest_method = "POST"
+    rest_method = "GET"
     fields = [
         "username",
         "display_name",
@@ -52,11 +52,11 @@ class VideosStream(TapTiktokBusinessStream):
     """Define custom stream."""
 
     name = "videos"
-    path = "/videos/list/"
+    path = "/video/list/"
     parent_stream_type = AccountsStream
     primary_keys = ["item_id"]
     replication_key = "create_time"
-    rest_method = "POST"
+    rest_method = "GET"
     fields = [
         "item_id",
         "create_time",
@@ -97,11 +97,11 @@ class CommentsStream(TapTiktokBusinessStream):
     """Define custom stream."""
 
     name = "comments"
-    path = "/comments/list/"
+    path = "/comment/list/"
     parent_stream_type = VideosStream
     primary_keys = ["comment_id"]
     replication_key = "create_time"
-    rest_method = "POST"
+    rest_method = "GET"
     schema_filepath = SCHEMAS_DIR / "comments.schema.json"
 
     def prepare_request_payload(

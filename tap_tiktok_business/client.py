@@ -8,18 +8,21 @@ from typing import Any, cast, Dict, Optional, Union, List, Iterable
 from memoization import cached
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
+from singer_sdk.exceptions import RetriableAPIError
 
 from tap_tiktok_business.auth import OAuthAuthenticator
 
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
+URL_BASE = "https://business-api.tiktok.com/open_api/v1.3"
+
 
 class TapTiktokBusinessStream(RESTStream):
     """TapTiktokBusinessStream stream class."""
 
     records_jsonpath = "$[*]"
-    url_base = "https://business-api.tiktok.com/open_api/v1.2/business"
+    url_base = URL_BASE + "/business"
     fields = None  # Account and Video streams will use this
 
     @property
@@ -28,7 +31,7 @@ class TapTiktokBusinessStream(RESTStream):
         """Return a new authenticator object."""
         return OAuthAuthenticator(
             self,
-            auth_endpoint="https://business-api.tiktok.com/open_api/oauth2/token/?business=tt_user",
+            auth_endpoint= URL_BASE + "/oauth2/creator_token/?business=tt_user",
         )
 
     @property
@@ -40,6 +43,17 @@ class TapTiktokBusinessStream(RESTStream):
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
         return headers
+    
+    def validate_response(self, response: requests.Response) -> None:
+        # Tiktok API has specific error codes like 50000:
+        # https://ads.tiktok.com/marketing_api/docs?id=1737172488964097
+        # so need to handle this explicitly
+
+        code = response.json()['code']
+        if str(code).startswith('5'):
+            self.logger.debug("Error code 5xxxx recieved, retrying")
+            raise RetriableAPIError(f"Encountered error {code}", response=response)
+        return super().validate_response(response)
 
     def get_next_page_token(
         self, response: requests.Response, previous_token: Optional[Any]
@@ -67,6 +81,7 @@ class TapTiktokBusinessStream(RESTStream):
         if self.replication_key:
             params["sort"] = "asc"
             params["order_by"] = self.replication_key
+        params['business_id'] =  context['business_id']
         return params
 
     def request_records(self, context: Optional[dict]) -> Iterable[dict]:
