@@ -120,7 +120,7 @@ class CommentsStream(TapTiktokBusinessStream):
             payload["cursor"] = next_page_token
 
         return payload
-
+ 
     def parse_response(
         self, response: requests.Response, context: Optional[dict]
     ) -> Iterable[dict]:
