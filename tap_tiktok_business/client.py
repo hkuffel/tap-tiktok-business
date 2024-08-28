@@ -19,7 +19,7 @@ class TapTiktokBusinessStream(RESTStream):
     """TapTiktokBusinessStream stream class."""
 
     records_jsonpath = "$[*]"
-    url_base = "https://business-api.tiktok.com/open_api/v1.2/business"
+    url_base = "https://business-api.tiktok.com/open_api/v1.3/business"
     fields = None  # Account and Video streams will use this
 
     @property
@@ -59,14 +59,30 @@ class TapTiktokBusinessStream(RESTStream):
         self, context: Optional[dict], next_page_token: Optional[Any] = None
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization.
-        params like business id and fields are actually added in the
-        prepare_request_payload method due to the idiosyncrasies of the
-        tiktok api.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page index or value.
+
+        Returns:
+            A dictionary of URL query parameters.
         """
-        params: Dict = super().get_url_params(context, next_page_token)
+        params: dict = {}
+        if self.name == "VideosStream":
+            fields = [
+                "item_id", "create_time", "thumbnail_url", "share_url", "embed_url",
+                "caption", "video_views", "likes", "comments", "shares", "reach",
+                "video_duration", "full_video_watched_rate", "total_time_watched",
+                "average_time_watched", "impression_sources", "audience_countries"
+            ]
+            params["fields"] = ",".join(fields)
+        if next_page_token:
+            params["page"] = next_page_token
         if self.replication_key:
             params["sort"] = "asc"
             params["order_by"] = self.replication_key
+        if context and "business_id" in context:
+            params["business_id"] = context["business_id"]
         return params
 
     def request_records(self, context: Optional[dict]) -> Iterable[dict]:
